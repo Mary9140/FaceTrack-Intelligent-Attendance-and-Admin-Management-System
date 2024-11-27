@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1, h3 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        h3 {
+            margin-top: 40px;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="file"], button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        /* Task List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 5px;
+        }
+
+        /* Button Styling for Actions */
+        .actions button {
+            padding: 5px 10px;
+            background-color: #f44336;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #e41c1c;
+        }
+
+        /* Flexbox for Layout */
+        .employee-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .employee-actions form {
+            display: inline-block;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Add New Employee Form -->
+        <h3>Add New Employee</h3>
+        <form method="POST" action="/admin_dashboard" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Employee Name" required><br><br>
+            <input type="text" name="role" placeholder="Employee Role" required><br><br>
+            <input type="file" name="employee_image" accept="image/*" required><br><br>
+            <button type="submit" name="action" value="add_employee">Add Employee</button>
+        </form>
+
+        <!-- Employee List Table -->
+        <h3>Employee List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Tasks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.EmployeeID }}</td>
+                    <td>{{ employee.Name }}</td>
+                    <td>{{ employee.Role }}</td>
+                    <td>
+                        <ul>
+                            {% for task in employee.Tasks %}
+                            <li>{{ task }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="employee-actions">
+                        <!-- Add Task and Remove Task buttons -->
+                        <form method="POST" action="/admin_dashboard">
+                            <input type="hidden" name="employee_id" value="{{ employee.EmployeeID }}">
+                            <input type="text" name="task" placeholder="Task Description">
+                            <button type="submit" name="action" value="add_task">Add Task</button>
+                            <button type="submit" name="action" value="remove_task">Remove Task</button>
+                        </form>
+
+                        <!-- Remove Employee button -->
+                        <form method="POST" action="/admin_dashboard" class="actions">
+                            <input type="hidden" name="employee_id" value="{{ employee.EmployeeID }}">
+                            <button type="submit" name="action" value="remove_employee">Remove Employee</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

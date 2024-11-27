@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1, h3 {
+            color: #2C3E50;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Employee Image Styling */
+        img {
+            border-radius: 50%;
+            border: 4px solid #2C3E50;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Task List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            background-color: #fff;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        /* Button Styling */
+        a {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance Marked for {{ employee_name }}</h1>  <!-- Display employee name -->
+    <p>Role: {{ employee_role }}</p>  <!-- Display employee role -->
+    <img src="{{ employee_image_url }}" alt="Employee Image" style="width: 200px; height: 200px;">
+    
+    <h3>Assigned Tasks:</h3>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% else %}
+            <li>No tasks assigned.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/">Go back to homepage</a>
+</body>
+</html>

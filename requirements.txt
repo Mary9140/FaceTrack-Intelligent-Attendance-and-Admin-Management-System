@@ -1,0 +1,5 @@
+Flask==2.2.3
+boto3==1.26.9
+opencv-python==4.7.0.72
+werkzeug==2.2.3
+uuid==1.30  # uuid is part of the standard library in Python 3, but you may include it explicitly if you need it.

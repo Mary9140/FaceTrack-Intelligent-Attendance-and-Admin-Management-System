@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <!-- Link to Bootstrap for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link to Google Font (Roboto) for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('static/blog-–-462-1.webp'); /* Add a URL for your desired background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 50px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-top: 120px; /* Center the form vertically */
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #ddd;
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #ffcc00; /* Gold color */
+            border-color: #ffcc00;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6b800; /* Darker gold on hover */
+            border-color: #e6b800;
+        }
+
+        /* Responsive design adjustments */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin-top: 80px; /* Adjust for smaller screens */
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .btn-primary {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Login</h1>
+        <p>Please click the button below to log in using face recognition.</p>
+        <form action="/admin_login" method="POST">
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Login with Face Recognition</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
